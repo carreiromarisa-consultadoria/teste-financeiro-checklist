@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Teste de Organização Financeira | Marisa Carreiro</title>
+  <style>
+    :root {
+      --bg: #f7f2ec;
+      --bg-2: #f2e9df;
+      --card: rgba(255,255,255,0.92);
+      --text: #2f261f;
+      --muted: #7c6a5d;
+      --line: #eadbcd;
+      --gold: #c79a4a;
+      --gold-dark: #a97827;
+      --brown: #8f684d;
+      --accent: #9a2f2f;
+      --shadow: 0 20px 60px rgba(86, 58, 36, 0.12);
+      --radius: 28px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Inter, Arial, Helvetica, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(199,154,74,0.08), transparent 30%),
+        linear-gradient(180deg, var(--bg) 0%, var(--bg-2) 100%);
+      line-height: 1.55;
+    }
+
+    .wrap {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 32px 18px 60px;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 26px;
+      align-items: stretch;
+      margin-bottom: 28px;
+    }
+
+    .hero-left,
+    .hero-right,
+    .result-section,
+    .quiz-card {
+      background: var(--card);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,0.55);
+      box-shadow: var(--shadow);
+      border-radius: var(--radius);
+    }
+
+    .hero-left {
+      padding: 34px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-left::after {
+      content: "";
+      position: absolute;
+      width: 220px;
+      height: 220px;
+      right: -80px;
+      top: -80px;
+      background: radial-gradient(circle, rgba(199,154,74,0.16), transparent 70%);
+      border-radius: 50%;
+    }
+
+    .hero-right {
+      padding: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 260px;
+    }
+
+    .logo {
+      width: 240px;
+      max-width: 100%;
+      display: block;
+      margin-bottom: 26px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--gold-dark);
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 26px;
+      height: 1px;
+      background: var(--gold);
+      display: inline-block;
+    }
+
+    h1 {
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      line-height: 1.05;
+      margin: 0 0 16px;
+      letter-spacing: -0.04em;
+    }
+
+    h1 .highlight {
+      color: var(--accent);
+    }
+
+    .lead {
+      font-size: 1.08rem;
+      color: var(--muted);
+      max-width: 620px;
+      margin-bottom: 24px;
+    }
+
+    .hero-points {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .hero-point {
+      padding: 14px 16px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: rgba(255,255,255,0.75);
+      font-size: 0.95rem;
+      color: var(--text);
+    }
+
+    .hero-point strong {
+      display: block;
+      font-size: 1rem;
+      margin-bottom: 4px;
+      color: var(--brown);
+    }
+
+    .hero-right-card {
+      width: 100%;
+      padding: 22px;
+      border-radius: 22px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.88), rgba(247,240,233,0.92));
+      border: 1px solid var(--line);
+    }
+
+    .hero-right-card h2 {
+      font-size: 1.2rem;
+      margin: 0 0 12px;
+    }
+
+    .mini-checks {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: 10px;
+    }
+
+    .mini-checks li {
+      border-radius: 14px;
+      padding: 11px 12px;
+      background: #fff;
+      border: 1px solid var(--line);
+      font-size: 0.96rem;
+    }
+
+    .quiz-card {
+      padding: 34px;
+    }
+
+    .quiz-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 20px;
+      margin-bottom: 24px;
+      padding-bottom: 18px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .quiz-header h2 {
+      margin: 0;
+      font-size: 1.55rem;
+    }
+
+    .quiz-header p {
+      margin: 8px 0 0;
+      color: var(--muted);
+    }
+
+    .badge {
+      white-space: nowrap;
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(199,154,74,0.12);
+      color: var(--gold-dark);
+      font-weight: 700;
+      font-size: 0.92rem;
+      border: 1px solid rgba(199,154,74,0.22);
+    }
+
+    .question {
+      padding: 22px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .question:last-of-type {
+      border-bottom: none;
+    }
+
+    .question-title {
+      font-size: 1.08rem;
+      font-weight: 700;
+      margin-bottom: 14px;
+    }
+
+    .options {
+      display: grid;
+      gap: 12px;
+    }
+
+    .option {
+      position: relative;
+    }
+
+    .option input {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .option label {
+      display: block;
+      padding: 16px 18px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: #fff;
+      cursor: pointer;
+      transition: 0.2s ease;
+      font-weight: 500;
+    }
+
+    .option label:hover {
+      transform: translateY(-1px);
+      border-color: rgba(199,154,74,0.6);
+      box-shadow: 0 10px 24px rgba(86, 58, 36, 0.06);
+    }
+
+    .option input:checked + label {
+      border-color: var(--gold);
+      background: linear-gradient(180deg, #fffdf9, #f9f1e7);
+      box-shadow: 0 12px 26px rgba(199,154,74,0.14);
+    }
+
+    .actions {
+      padding-top: 22px;
+      display: flex;
+      justify-content: center;
+    }
+
+    button {
+      appearance: none;
+      border: none;
+      border-radius: 999px;
+      padding: 16px 30px;
+      min-width: 240px;
+      background: linear-gradient(135deg, var(--gold-dark), var(--gold));
+      color: white;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 16px 30px rgba(169,120,39,0.22);
+      transition: 0.2s ease;
+    }
+
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 20px 34px rgba(169,120,39,0.28);
+    }
+
+    .result-section {
+      display: none;
+      margin-top: 28px;
+      padding: 34px;
+    }
+
+    .result-top {
+      display: grid;
+      grid-template-columns: 330px 1fr;
+      gap: 30px;
+      align-items: start;
+    }
+
+    .result-photo {
+      width: 100%;
+      border-radius: 24px;
+      object-fit: cover;
+      box-shadow: 0 16px 36px rgba(46,30,18,0.14);
+      border: 1px solid rgba(255,255,255,0.8);
+    }
+
+    .result-copy .small {
+      color: var(--gold-dark);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 0.78rem;
+      margin-bottom: 10px;
+    }
+
+    .result-copy h3 {
+      font-size: clamp(1.7rem, 3vw, 2.6rem);
+      line-height: 1.05;
+      margin: 0 0 14px;
+    }
+
+    .result-copy p {
+      color: var(--muted);
+      font-size: 1.02rem;
+      margin: 0 0 14px;
+    }
+
+    .score-pill {
+      display: inline-flex;
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(154,47,47,0.08);
+      color: var(--accent);
+      font-weight: 700;
+      margin-bottom: 18px;
+      border: 1px solid rgba(154,47,47,0.14);
+    }
+
+    .result-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-top: 30px;
+    }
+
+    .panel {
+      background: rgba(255,255,255,0.85);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      padding: 24px;
+    }
+
+    .panel h4 {
+      margin: 0 0 14px;
+      font-size: 1.16rem;
+    }
+
+    .checklist {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: 12px;
+    }
+
+    .checklist li {
+      padding: 12px 14px;
+      border-radius: 14px;
+      background: #fff;
+      border: 1px solid var(--line);
+    }
+
+    .about-box p:last-child,
+    .cta-box p:last-child {
+      margin-bottom: 0;
+    }
+
+    .cta-box {
+      background: linear-gradient(180deg, #fffaf4, #f8efe4);
+    }
+
+    .contact {
+      margin-top: 18px;
+      padding-top: 18px;
+      border-top: 1px solid var(--line);
+      font-weight: 700;
+    }
+
+    .contact a {
+      color: var(--brown);
+      text-decoration: none;
+    }
+
+    .contact a:hover {
+      text-decoration: underline;
+    }
+
+    .result-actions {
+      margin-top: 20px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .secondary-btn {
+      background: transparent;
+      color: var(--brown);
+      border: 1px solid var(--line);
+      box-shadow: none;
+    }
+
+    .footer {
+      text-align: center;
+      color: var(--muted);
+      margin-top: 26px;
+      font-size: 0.92rem;
+    }
+
+    @media (max-width: 980px) {
+      .hero,
+      .result-top,
+      .result-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-points {
+        grid-template-columns: 1fr;
+      }
+
+      .quiz-header {
+        flex-direction: column;
+        align-items: start;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .wrap { padding: 16px 12px 40px; }
+      .hero-left,
+      .hero-right,
+      .quiz-card,
+      .result-section { padding: 22px; }
+      h1 { font-size: 2.2rem; }
+      button { width: 100%; }
+      .result-actions { flex-direction: column; }
+      .result-actions button { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <section class="hero">
+      <div class="hero-left">
+        <img class="logo" src="logo-marisa-carreiro.png" alt="Marisa Carreiro Finanças Pessoais" />
+        <div class="eyebrow">Teste financeiro</div>
+        <h1>A tua vida financeira está <span class="highlight">realmente organizada</span>?</h1>
+        <p class="lead">Responde a este teste e descobre se tens bases sólidas para viver com mais tranquilidade, segurança e clareza sobre o teu dinheiro.</p>
+        <div class="hero-points">
+          <div class="hero-point"><strong>Rápido</strong>Leva menos de 2 minutos.</div>
+          <div class="hero-point"><strong>Útil</strong>Mostra o que já tens e o que ainda falta.</div>
+          <div class="hero-point"><strong>Claro</strong>No final recebes orientação prática.</div>
+        </div>
+      </div>
+
+      <div class="hero-right">
+        <div class="hero-right-card">
+          <h2>O que vais avaliar</h2>
+          <ul class="mini-checks">
+            <li>✔ controlo das despesas</li>
+            <li>✔ orçamento mensal</li>
+            <li>✔ fundo de emergência</li>
+            <li>✔ capacidade de poupança</li>
+            <li>✔ visão de futuro financeiro</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="quiz-card" id="quiz">
+      <div class="quiz-header">
+        <div>
+          <h2>Responde às perguntas</h2>
+          <p>Escolhe a opção que mais se aproxima da tua realidade atual.</p>
+        </div>
+        <div class="badge">5 perguntas • resultado imediato</div>
+      </div>
+
+      <div class="question">
+        <div class="question-title">1. Sabes exatamente quanto gastas por mês?</div>
+        <div class="options">
+          <div class="option"><input type="radio" name="q1" id="q1a" value="2"><label for="q1a">Sim, sei exatamente.</label></div>
+          <div class="option"><input type="radio" name="q1" id="q1b" value="1"><label for="q1b">Tenho uma ideia aproximada.</label></div>
+          <div class="option"><input type="radio" name="q1" id="q1c" value="0"><label for="q1c">Não sei ao certo.</label></div>
+        </div>
+      </div>
+
+      <div class="question">
+        <div class="question-title">2. Tens um orçamento mensal?</div>
+        <div class="options">
+          <div class="option"><input type="radio" name="q2" id="q2a" value="2"><label for="q2a">Sim, definido e acompanho-o.</label></div>
+          <div class="option"><input type="radio" name="q2" id="q2b" value="1"><label for="q2b">Tenho uma ideia, mas não está muito estruturado.</label></div>
+          <div class="option"><input type="radio" name="q2" id="q2c" value="0"><label for="q2c">Não tenho orçamento.</label></div>
+        </div>
+      </div>
+
+      <div class="question">
+        <div class="question-title">3. Tens fundo de emergência?</div>
+        <div class="options">
+          <div class="option"><input type="radio" name="q3" id="q3a" value="2"><label for="q3a">Sim, cobre vários meses de despesas.</label></div>
+          <div class="option"><input type="radio" name="q3" id="q3b" value="1"><label for="q3b">Tenho alguma poupança, mas ainda não chega.</label></div>
+          <div class="option"><input type="radio" name="q3" id="q3c" value="0"><label for="q3c">Não tenho.</label></div>
+        </div>
+      </div>
+
+      <div class="question">
+        <div class="question-title">4. Consegues poupar todos os meses?</div>
+        <div class="options">
+          <div class="option"><input type="radio" name="q4" id="q4a" value="2"><label for="q4a">Sim, de forma consistente.</label></div>
+          <div class="option"><input type="radio" name="q4" id="q4b" value="1"><label for="q4b">Às vezes consigo.</label></div>
+          <div class="option"><input type="radio" name="q4" id="q4c" value="0"><label for="q4c">Quase nunca.</label></div>
+        </div>
+      </div>
+
+      <div class="question">
+        <div class="question-title">5. Tens investimentos ou um plano financeiro para o futuro?</div>
+        <div class="options">
+          <div class="option"><input type="radio" name="q5" id="q5a" value="2"><label for="q5a">Sim, já tenho estratégia.</label></div>
+          <div class="option"><input type="radio" name="q5" id="q5b" value="1"><label for="q5b">Estou a começar a pensar nisso.</label></div>
+          <div class="option"><input type="radio" name="q5" id="q5c" value="0"><label for="q5c">Ainda não.</label></div>
+        </div>
+      </div>
+
+      <div class="actions">
+        <button type="button" onclick="calcularResultado()">Ver o meu resultado</button>
+      </div>
+    </section>
+
+    <section class="result-section" id="resultado">
+      <div class="result-top">
+        <div>
+          <img class="result-photo" src="marisa-carreiro.jpg" alt="Marisa Carreiro" />
+        </div>
+        <div class="result-copy">
+          <div class="small">Resultado do teste</div>
+          <div class="score-pill" id="scorePill">Pontuação</div>
+          <h3 id="tituloResultado">O teu resultado</h3>
+          <p id="textoResultado"></p>
+          <p id="textoComplementar"></p>
+          <div class="result-actions">
+            <button type="button" onclick="document.getElementById('sobre-mim').scrollIntoView({behavior:'smooth'})">Ver sobre mim</button>
+            <button type="button" class="secondary-btn" onclick="window.location.href='mailto:carreiromarisa@gmail.com?subject=Pedido%20de%20ajuda%20financeira'">Pedir ajuda por email</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="result-grid">
+        <div class="panel">
+          <h4>✔ Checklist financeira essencial</h4>
+          <ul class="checklist">
+            <li>✔ fundo de emergência</li>
+            <li>✔ controlo das despesas</li>
+            <li>✔ plano de poupança</li>
+            <li>✔ estratégia de investimento</li>
+            <li>✔ proteção para imprevistos</li>
+            <li>✔ objetivos financeiros claros</li>
+          </ul>
+        </div>
+
+        <div class="panel cta-box">
+          <h4>Próximo passo</h4>
+          <p>Se sentes que ainda te falta clareza, estrutura ou segurança nas tuas finanças, posso ajudar-te a organizar tudo de forma simples, prática e adaptada à tua realidade.</p>
+          <p>O objetivo não é complicar. É criar um sistema financeiro claro para tomares decisões com mais tranquilidade.</p>
+          <div class="contact">Email: <a href="mailto:carreiromarisa@gmail.com">carreiromarisa@gmail.com</a></div>
+        </div>
+      </div>
+
+      <div class="panel about-box" id="sobre-mim" style="margin-top:24px;">
+        <h4>Sobre mim</h4>
+        <p>Sou a Marisa Carreiro, licenciada em Fiscalidade e Contabilista Certificada nº 89876.</p>
+        <p>Tenho especialização em Gestão de Organizações e pós-graduação em Gestão Pública, com várias atualizações ao longo do tempo nas áreas financeira e fiscal.</p>
+        <p>Ao longo da minha experiência profissional desenvolvi um interesse cada vez maior pelas finanças pessoais e pelo impacto que a organização financeira pode ter na vida das pessoas.</p>
+        <p>Acredito que compreender o próprio dinheiro, organizar as contas e criar um sistema financeiro simples pode trazer mais tranquilidade, segurança e liberdade de decisão.</p>
+        <p>A minha missão é ajudar pessoas a ganhar clareza sobre o seu dinheiro e a organizar as suas finanças de forma prática, consciente e sustentável.</p>
+      </div>
+    </section>
+
+    <div class="footer">Marisa Carreiro • Finanças Pessoais</div>
+  </div>
+
+  <script>
+    function calcularResultado() {
+      let total = 0;
+      let respondidas = 0;
+
+      for (let i = 1; i <= 5; i++) {
+        const resposta = document.querySelector('input[name="q' + i + '"]:checked');
+        if (resposta) {
+          total += parseInt(resposta.value, 10);
+          respondidas++;
+        }
+      }
+
+      if (respondidas < 5) {
+        alert('Responde às 5 perguntas para veres o teu resultado.');
+        return;
+      }
+
+      const score = document.getElementById('scorePill');
+      const titulo = document.getElementById('tituloResultado');
+      const texto = document.getElementById('textoResultado');
+      const complemento = document.getElementById('textoComplementar');
+
+      score.textContent = 'Pontuação: ' + total + '/10';
+
+      if (total >= 8) {
+        titulo.textContent = 'Tens uma boa base financeira.';
+        texto.textContent = 'A tua organização financeira está num bom caminho. Já tens vários pilares importantes bem construídos e isso dá-te mais controlo, mais segurança e melhores condições para tomares decisões com confiança.';
+        complemento.textContent = 'Mesmo assim, quase sempre existem oportunidades para otimizar a poupança, afinar a estratégia e tornar o teu dinheiro ainda mais alinhado com os teus objetivos.';
+      } else if (total >= 4) {
+        titulo.textContent = 'Tens bases importantes, mas ainda há pontos a organizar.';
+        texto.textContent = 'A tua situação mostra que já existem alguns cuidados financeiros, mas ainda falta estrutura em áreas que fazem diferença no dia a dia e no futuro.';
+        complemento.textContent = 'Muitas pessoas ficam nesta fase durante anos. Com clareza e um sistema simples, é possível transformar esta base numa vida financeira muito mais tranquila.';
+      } else {
+        titulo.textContent = 'Precisas de criar uma estrutura financeira mais sólida.';
+        texto.textContent = 'Neste momento, é provável que a tua vida financeira ainda esteja demasiado dependente do mês a mês. Isso pode gerar stress, insegurança e dificuldade em construir poupança e estabilidade.';
+        complemento.textContent = 'A boa notícia é esta: com organização e orientação certa, é possível mudar completamente a relação com o dinheiro e começar a ganhar clareza rapidamente.';
+      }
+
+      const resultado = document.getElementById('resultado');
+      resultado.style.display = 'block';
+      resultado.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  </script>
+</body>
+</html>
